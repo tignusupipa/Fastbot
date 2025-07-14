@@ -1,6 +1,6 @@
 import os
 import threading
-from healt import app as health_app  # 👈 importa l'app Flask
+from health import app as health_app  # 👈 importa l'app Flask
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import (
     ApplicationBuilder, CommandHandler, CallbackQueryHandler,
