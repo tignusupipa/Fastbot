@@ -254,11 +254,15 @@ async def choose_details(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Prodotto: {order['product']}\n"
         f"Quantità: {order['quantity']}\n"
         f"Dettagli: {order['details']}\n\n"
-        "Confermi l'ordine? (si/no)"
+        "Confermi l'ordine?"
     )
-    await update.message.reply_text(summary)
+    keyboard = [
+        [InlineKeyboardButton("✅ Conferma", callback_data='confirm_order_yes')],
+        [InlineKeyboardButton("❌ Annulla", callback_data='confirm_order_no')]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.message.reply_text(summary, reply_markup=reply_markup)
     return CONFIRMING
-
 async def confirm_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.message.from_user.id
     text = update.message.text.lower()
